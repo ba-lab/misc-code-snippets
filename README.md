@@ -98,6 +98,13 @@ sshfs badri@prayog02.umsl.edu:/data/PCP/ /Users/badriadhikari/prayog02.umsl.edu 
 ```
 
 ## Linux
+
+### How to backup (and push to background)?
+* Open ssh terminal to remote server
+* Begin scp transfer as usual.
+* Background the scp process using `Ctrl+Z`, then the command `bg`
+* Disown the backgrounded process using `disown`
+
 ### How to setup VNC viewer using Mac/Ubuntu to access?
 #### Start VNC server in the server with a useraccount
 $ vncserver -kill :1
