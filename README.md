@@ -104,10 +104,10 @@ sshfs badri@prayog02.umsl.edu:/data/PCP/ /Users/badriadhikari/prayog02.umsl.edu 
 1. `ssh: user@prayog02.umsl.edu`
 1. Setup your environment (after first login):
    Add the following lines to your ~/.bashrc file
-```bash
-export PATH=$PATH:/usr/local/cuda-10.0/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-10.0/lib64
-```
+   ```bash
+   export PATH=$PATH:/usr/local/cuda-10.0/bin
+   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-10.0/lib64
+   ```
 1. Install the following
 ```bash
 pip3 install tensorflow-gpu [If this does not work try - pip3 install tensorflow-gpu==1.13.2]
