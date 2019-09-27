@@ -122,21 +122,27 @@ pip install keras
 * Disown the backgrounded process using `disown`
 
 ### How to setup VNC viewer using Mac/Ubuntu to access?
-#### Start VNC server in the server with a useraccount
-$ vncserver -kill :1
-$ vncserver -kill :2
-$ vncserver -kill :3
-$ vncserver -kill :4
-$ sudo rm -rf /tmp/.X*
-$ vncserver -geometry 1200x800
-Alternately simply run the following script which has all the commands
-$ ./restart-vnc-server.sh
-In a local machine’s terminal port forward (the exact port number can increase/decrease based on port availability)
-Connect to UMSL VPN
-$ ssh -L 5901:127.0.0.1:5901 -N -f -l notebook prayog01.hcp.umsl.edu [password is notebook2733]
-In the same local terminal, open the vnc viewer and supply password (notebook)
-$ open vnc://localhost:5901 (for mac client) [same password]
+#### Start VNC server in the server with your account
+Run the following commands or create a script with the following content:
+```bash
+vncserver -kill :1
+vncserver -kill :2
+vncserver -kill :3
+vncserver -kill :4
+rm -rf /tmp/.X*
+vncserver -geometry 1600x1200
+```
+This will show a log file in the screen that will have the port where vnc server is running.
+#### In 2nd terminal Port forward (this is a local terminal; not server terminal)
+* If you are using Windows follow [this](https://crl.ucsd.edu/handbook/vnc/index.php) instead
+```
+$ ssh -L 8892:127.0.0.1:5901 -N -f -l user prayog02.umsl.edu
+```
+#### Connect to server
+```
+open vnc://localhost:5901 (for mac client)
 $ vncviewer localhost:5901 (for Ubuntu client)
+```
 
 ### How to create a user in Ubuntu?
 ```bash
