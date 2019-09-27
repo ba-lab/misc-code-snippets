@@ -144,6 +144,17 @@ set expandtab
 :set number
 ```
 
+### How to add a new HDD/SDD?
+```bash
+df -h
+ls /dev/
+sudo fdisk /dev/sdd
+sudo mkfs.ext4 /dev/sdd
+sudo mkdir /mysdd
+sudo mount /dev/sdc2 /mysdd
+sudo vim /etc/fstab
+```
+
 ### Some frequently used linux commands
 ```bash
 Update Bash prompt [update ~/.bashrc and ~/.bash_profile]
