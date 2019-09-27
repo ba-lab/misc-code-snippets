@@ -1,4 +1,4 @@
-# Code Snippets
+<h1>Code Snippets</h1>
 
 # Python
 
