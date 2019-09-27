@@ -239,22 +239,48 @@ Fix the log file with backspace and other characters:
 col -bp < train-2017-02-26.log > xx.log
 ```
 
-## Server Access
-
 # Lewis Server
-* [Documentation](https://docs.rnet.missouri.edu)
+### Documentations
+* [Main documentation](https://docs.rnet.missouri.edu)
+* [Slurm tutorial](https://wiki.rc.hms.harvard.edu/display/O2/Using+Slurm+Basic)
+* [Basic linux commands](http://docs.rnet.missouri.edu/Linux/basic-commands)
 
-How to Connect to Lewis GPU?
-ssh adhikarib@lewis.rnet.missouri.edu
-srun --mem 20G -p Gpu --gres gpu:1 --pty /bin/bash --login
-srun --mem 20G -p Gpu --gres gpu:"Tesla V100-PCIE-32GB":1 --pty /bin/bash --login
-source ~/tensorflow_from_source/tensorflow_virtual_env/bin/activate
-module load cuda/cuda-8.0
-module load cudnn/cudnn-6.0-cuda-8.0
+### What are the directories that I have access to?
+`~, ~/data, ~/scratch, /group/prayog/, /storage/htc/prayog/`
 
+### How to obtain a GPU terminal?
+#### Option 1 (quick):
+```
+source /home/adhikarib/group-prayog/ba-lab/give-me-a-gpu-node.sh
+source /home/adhikarib/group-prayog/ba-lab/keras.sh
+```
+
+#### Option 2 (detailed):
+1. Connect
+   ```
+   ssh adhikarib@lewis.rnet.missouri.edu
+   ```
+2. Obtain any or specific GPU terminal (2 hour access):
+   ```
+   srun --mem 20G -p Gpu --gres gpu:1 --pty /bin/bash --login (for any GPU)
+   srun --mem 20G -p Gpu --gres gpu:"Tesla V100-PCIE-32GB":1 --pty /bin/bash --login (for a specific GPU)
+   ```
+3. Activate Python3 environment:
+   ```
+   source /group/prayog/venvGPU/bin/activate
+   module load cudnn/cudnn-7.1.4-cuda-9.0.176
+   ```
+#### Test GPU speed
+```
+python --version
+python /group/prayog/ba-lab/test-gpu.py
+```
+You should see GPU (not CPU) in the logs
+   
 Two day GPU access test:
 srun --mem 20G -p gpu3 --account general-gpu --gres gpu:1 --pty /bin/bash --login
 
+What are the GPUs available?
 05 GB - lewis4-r730-gpu3-node426,gpu:Tesla K20Xm:1
 05 GB - lewis4-r730-gpu3-node428,gpu:Tesla K20Xm:1
 11 GB - lewis4-r730-gpu3-node429,gpu:Tesla K40m:1
@@ -279,13 +305,6 @@ $ sbatch --time 1-23:00 --partition Lewis --mem 20G /storage/htc/prayog/contact.
   		$ sinfo --long --partition=Lewis
 - the default partition is not Lewis so the job is terminated earlier
 
-Lewis Related
-Slurm Tutorial
-https://wiki.rc.hms.harvard.edu/display/O2/Using+Slurm+Basic 
-Space Limitation Informations
-~, ~/data, ~/scratch, /group/prayog/, /storage/htc/prayog, 
-Basic Linux commands
-http://docs.rnet.missouri.edu/Linux/basic-commands 
 Find who is in the group?
 $ getent group prayog-group
 
