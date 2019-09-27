@@ -51,6 +51,12 @@ def abc(x, y):
    assert x.shape == y.shape
 ```
 
+### How to find out which device GPU device tensorflow is using?
+```python
+from tensorflow.python.client import device_lib
+print(device_lib.list_local_devices())
+```
+
 ### How to making remote folders accessible locally in Mac?
 ```bash
 brew cask install osxfuse
