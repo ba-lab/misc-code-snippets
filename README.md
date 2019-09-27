@@ -154,6 +154,10 @@ sudo mkdir /mysdd
 sudo mount /dev/sdc2 /mysdd
 sudo vim /etc/fstab
 ```
+```bash
+#device        mountpoint             fstype    options  dump   fsck
+/dev/sdb1    /home/yourname/mydata    ext4    defaults    0    1
+```
 
 ### Some frequently used linux commands
 ```bash
