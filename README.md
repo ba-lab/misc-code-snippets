@@ -342,7 +342,17 @@ sinfo --long --partition=Gpu
 sinfo --long --partition=gpu3
 ```
 
-- the default partition is not Lewis so the job is terminated earlier
+### How to create a 'daddy' sbatch job?
+```bash
+#!/bin/bash
+for pdb in `ls ./aln/*.aln`; 
+   do
+	id=$(basename $pdb)
+	id=${id%.*}
+	echo $id
+	sbatch sbatch-Lewis.sh $id
+   done
+```
 
 # Native R
 Some references:
