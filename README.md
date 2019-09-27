@@ -2,6 +2,15 @@
 
 ## Python
 
+### Some hammers and screwdrivers
+```
+print(x.shape)
+print(len(x))
+print(x.ndim)
+print(x.dtypes)
+print(type(x))
+```
+
 ### How to remotely access the Jupyter Notebook in prayog02?
 #### In 1st Terminal start Jupyter service:
 ```bash
