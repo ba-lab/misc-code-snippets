@@ -47,6 +47,7 @@ OR
 This will give a URL path; leave the terminal open.
 
 #### In 2nd terminal Port forward (this is a local terminal; not server terminal)
+* If you are using Windows follow [this](https://crl.ucsd.edu/handbook/vnc/index.php) instead
 ```
 $ ssh -L 8892:127.0.0.1:8892 -N -f -l user prayog02.umsl.edu
 ```
