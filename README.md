@@ -335,7 +335,13 @@ squeue | grep 'GPU|gpu'
 getent group prayog-group
 ```
 
-  		$ sinfo --long --partition=Lewis
+### How to lookup detailed partition information (number of nodes, etc.)
+```
+sinfo --long --partition=Lewis
+sinfo --long --partition=Gpu
+sinfo --long --partition=gpu3
+```
+
 - the default partition is not Lewis so the job is terminated earlier
 
 # Native R
