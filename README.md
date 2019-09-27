@@ -272,9 +272,16 @@ source /home/adhikarib/group-prayog/ba-lab/keras.sh
 3. Activate Python environment:
    ```
    source /group/prayog/venvGPU/bin/activate (Python 2)
-   ? (Python 3)
    module load cudnn/cudnn-7.1.4-cuda-9.0.176
    ```
+#### Option 3 (Python3):
+```bash
+source /group/prayog/ba-lab/give-me-a-gpu-node.sh 
+source /group/prayog/virt-env3.5/bin/activate
+module load cudnn/cudnn-7.4.2-cuda-10.0.130
+python3 /group/prayog/ba-lab/test-gpu.py
+```
+
 #### Test GPU speed
 ```
 python --version
@@ -283,9 +290,10 @@ python /group/prayog/ba-lab/test-gpu.py
 You should see GPU (not CPU) in the logs
    
 ### What are the GPUs available?
-05 GB - lewis4-r730-gpu3-node426,gpu:Tesla K20Xm:1
-05 GB - lewis4-r730-gpu3-node428,gpu:Tesla K20Xm:1
-11 GB - lewis4-r730-gpu3-node429,gpu:Tesla K40m:1
+```
+05 GB - lewis4-r730-gpu3-node426,gpu:Tesla K20Xm:1  
+05 GB - lewis4-r730-gpu3-node428,gpu:Tesla K20Xm:1  
+11 GB - lewis4-r730-gpu3-node429,gpu:Tesla K40m:1  
 12 GB - lewis4-r730-gpu3-node430,gpu:Tesla K40m:1
 05 GB - lewis4-r730-gpu3-node431,gpu:Tesla K20Xm:1
 05 GB - lewis4-r730-gpu3-node432,gpu:Tesla K20Xm:1
@@ -300,7 +308,7 @@ You should see GPU (not CPU) in the logs
 11 GB - lewis4-z10pg-gpu3-node599,gpu:GeForce GTX 1080 Ti:4
 11 GB - lewis4-z10pg-gpu3-node601,gpu:GeForce GTX 1080 Ti:4
 12 GB - lewis4-z10pg-gpu3-node600,gpu:GeForce GTX 1080 Ti:4
-
+```
 ### How to run a non-GPU job in background?
 ```
 sbatch --time 1-23:00 --partition Lewis --mem 20G "your script"
