@@ -254,6 +254,11 @@ col -bp < train-2017-02-26.log > xx.log
 ~/scratch Unlimited
 /group/prayog/ 100GB
 ```
+
+```
+lfs quota -hg prayog-group /storage/hpc
+```
+
 ### How to obtain a GPU terminal?
 #### Option 1 (quick):
 ```
