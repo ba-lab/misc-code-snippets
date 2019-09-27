@@ -350,7 +350,7 @@ for pdb in `ls ./aln/*.aln`;
 	id=$(basename $pdb)
 	id=${id%.*}
 	echo $id
-	sbatch sbatch-Lewis.sh $id
+	sbatch /group/prayog/ba-lab/sbatch-Lewis.sh $id
    done
 ```
 
