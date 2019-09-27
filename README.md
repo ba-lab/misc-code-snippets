@@ -245,9 +245,15 @@ col -bp < train-2017-02-26.log > xx.log
 * [Slurm tutorial](https://wiki.rc.hms.harvard.edu/display/O2/Using+Slurm+Basic)
 * [Basic linux commands](http://docs.rnet.missouri.edu/Linux/basic-commands)
 
-### What are the directories that I have access to?
+### What are the directories that I have access to (and their space limits)?
 `~, ~/data, ~/scratch, /group/prayog/, /storage/htc/prayog/`
 
+```
+~/ 5GB
+~/data 100GB
+~/scratch Unlimited
+/group/prayog/ 100GB
+```
 ### How to obtain a GPU terminal?
 #### Option 1 (quick):
 ```
