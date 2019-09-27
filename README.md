@@ -265,6 +265,10 @@ source /home/adhikarib/group-prayog/ba-lab/keras.sh
    srun --mem 20G -p Gpu --gres gpu:1 --pty /bin/bash --login (for any GPU)
    srun --mem 20G -p Gpu --gres gpu:"Tesla V100-PCIE-32GB":1 --pty /bin/bash --login (for a specific GPU)
    ```
+2. For two day access:
+   ```
+   srun --mem 20G -p gpu3 --account general-gpu --gres gpu:1 --pty /bin/bash --login
+   ```
 3. Activate Python3 environment:
    ```
    source /group/prayog/venvGPU/bin/activate
@@ -277,9 +281,6 @@ python /group/prayog/ba-lab/test-gpu.py
 ```
 You should see GPU (not CPU) in the logs
    
-Two day GPU access test:
-srun --mem 20G -p gpu3 --account general-gpu --gres gpu:1 --pty /bin/bash --login
-
 What are the GPUs available?
 05 GB - lewis4-r730-gpu3-node426,gpu:Tesla K20Xm:1
 05 GB - lewis4-r730-gpu3-node428,gpu:Tesla K20Xm:1
