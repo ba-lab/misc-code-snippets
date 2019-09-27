@@ -310,10 +310,25 @@ You should see GPU (not CPU) in the logs
 12 GB - lewis4-z10pg-gpu3-node600,gpu:GeForce GTX 1080 Ti:4
 ```
 ### How to run a non-GPU job in background?
+#### Option 1:
 ```
 sbatch --time 1-23:00 --partition Lewis --mem 20G "your script"
 ```
 If it does not run after 5 minutes, you probably don't have two-day access!
+#### Option 2:
+```
+sbatch /group/prayog/ba-lab/sbatch-Lewis.sh "python /group/prayog/ba-lab/test-gpu.py"
+```
+### How to check my jobs?
+```
+sacct
+```
+```
+squeue -A adhikarib
+```
+```
+squeue | grep 'GPU|gpu'
+```
 
 ### How to know who is in my group?
 ```
