@@ -269,9 +269,10 @@ source /home/adhikarib/group-prayog/ba-lab/keras.sh
    ```
    srun --mem 20G -p gpu3 --account general-gpu --gres gpu:1 --pty /bin/bash --login
    ```
-3. Activate Python3 environment:
+3. Activate Python environment:
    ```
-   source /group/prayog/venvGPU/bin/activate
+   source /group/prayog/venvGPU/bin/activate (Python 2)
+   ? (Python 3)
    module load cudnn/cudnn-7.1.4-cuda-9.0.176
    ```
 #### Test GPU speed
@@ -281,7 +282,7 @@ python /group/prayog/ba-lab/test-gpu.py
 ```
 You should see GPU (not CPU) in the logs
    
-What are the GPUs available?
+### What are the GPUs available?
 05 GB - lewis4-r730-gpu3-node426,gpu:Tesla K20Xm:1
 05 GB - lewis4-r730-gpu3-node428,gpu:Tesla K20Xm:1
 11 GB - lewis4-r730-gpu3-node429,gpu:Tesla K40m:1
@@ -300,156 +301,31 @@ What are the GPUs available?
 11 GB - lewis4-z10pg-gpu3-node601,gpu:GeForce GTX 1080 Ti:4
 12 GB - lewis4-z10pg-gpu3-node600,gpu:GeForce GTX 1080 Ti:4
 
-Run a job in background
-$ sbatch --time 1-23:00 --partition Lewis --mem 20G /storage/htc/prayog/contact.pl /storage/htc/prayog/NP_001341437.1.fasta
-- the default time limit for Lewis partition is two days so --time may not be needed
+### How to run a non-GPU job in background?
+```
+sbatch --time 1-23:00 --partition Lewis --mem 20G "your script"
+```
+If it does not run after 5 minutes, you probably don't have two-day access!
+
+### How to know who is in my group?
+```
+getent group prayog-group
+```
+
   		$ sinfo --long --partition=Lewis
 - the default partition is not Lewis so the job is terminated earlier
 
-Find who is in the group?
-$ getent group prayog-group
+# Native R
+Some references:
+* http://research.stowers-institute.org/efg/R/Color/Chart/ColorChart.pdf
+* http://rgraphics.limnology.wisc.edu/images/miscellaneous/pch.png
+* http://research.stowers-institute.org/mcm/plotlayout.pdf
 
-How to setup GPU access for a new user?
-Install
-$ virtualenv ~/aug-30 (Reference: http://docs.rnet.missouri.edu/Software/python_virtualenv)
-$ source ~/aug-30/bin/activate
-$ pip install --upgrade pip
-$ pip install tensorflow-gpu==1.9.0 (Reference: http://docs.rnet.missouri.edu/Software/tensorflow)
-$ pip install keras
-$ deactivate
-Test
-$ srun --mem 20G -p Gpu --gres gpu:1 --pty /bin/bash --login
-$ source ~/aug-30/bin/activate
-$ module load cuda/cuda-9.0.176
-$ module load cudnn/cudnn-7.1.4-cuda-9.0.176
-$ python /group/prayog/test-gpu.py
-
-from keras import layers
-from keras import models
-from keras.datasets import mnist
-from keras.utils import to_categorical
-model = models.Sequential()
-model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)))
-model.add(layers.MaxPooling2D((2, 2)))
-model.add(layers.Conv2D(64, (3, 3), activation='relu'))
-model.add(layers.MaxPooling2D((2, 2)))
-model.add(layers.Conv2D(64, (3, 3), activation='relu'))
-model.add(layers.Flatten())
-model.add(layers.Dense(64, activation='relu'))
-model.add(layers.Dense(10, activation='softmax'))
-model.summary()
-(train_images, train_labels), (test_images, test_labels) = mnist.load_data()
-train_images = train_images.reshape((60000, 28, 28, 1))
-train_images = train_images.astype('float32') / 255
-test_images = test_images.reshape((10000, 28, 28, 1))
-test_images = test_images.astype('float32') / 255
-train_labels = to_categorical(train_labels)
-test_labels = to_categorical(test_labels)
-model.compile(optimizer='rmsprop',
-          	loss='categorical_crossentropy',
-          	metrics=['accuracy'])
-model.fit(train_images, train_labels, epochs=5, batch_size=64)
-test_loss, test_acc = model.evaluate(test_images, test_labels)
-print("")
-print(test_acc)
-
-To use only a part of the GPU memory (never has to use, but just in case)
-import tensorflow as tf
-pu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.333)
-
-Find out which device Tensorflow is currently using:
-from tensorflow.python.client import device_lib
-print(device_lib.list_local_devices())
-
-
-Python and Deep Learning
-----------
->>> train_images.shape
-(60000, 28, 28)
->>> len
-
->>> train_labels
-
-
->>> train_lables.ndim
-
->>> print(train_lables.dtype)
-
->>> import matplotlib.pyplot as plt
->>> plt.imshow(digit, cmap = plt.cm.binary)
->>> plt.show()
-
-def abc(x, y):
-   assert len(x.shape) == 2
-   assert x.shape == y.shape
-
-train_data, train_labels
-y, y_pred 
-
-
-
-
-
-
-
-----------------------------------------------------------------------------------------------------------------
-Native R
-----------------------------------------------------------------------------------------------------------------
-
-http://research.stowers-institute.org/efg/R/Color/Chart/ColorChart.pdf
-http://rgraphics.limnology.wisc.edu/images/miscellaneous/pch.png
-http://research.stowers-institute.org/mcm/plotlayout.pdf
-
+### A sample code
+```R
 setwd("~/Dropbox/manuscripts/conassess")
 data <- read.table(“abc.txt”, skip = 1, header = T)
 data$V7 <- abs(data$V1-data$V2)
-# Computing correlation in R for two vectors a and b:
-coeff <- cor(a, b, method="spearman")
-coeff <- cor(a, b, method="pearson")
-# Replacing data values
-data$V7[data$V7 > 23] <- 200
-# subsetting data
-selection1 <- subset(alldata, EVAL == "TMSCORE")
-chr1 <- data[which(data$V1 == 1),]
-alldata <- subset(alldataoriginal, alldataoriginal$RMSD < 20.0)
-# Combine data into a new table
-stage1 <- data.frame(tmscore = alldata$stage1_TM.score, stage = rep(c("stage1"), each = 150))
-stage2 <- data.frame(tmscore = alldata$stage2_TM.score, stage = rep(c("stage2"), each = 150))
-final  <- rbind(stage1, stage2)
-# Figure margins
-par(mar=c(2,2,1,0.1))
-# Number of plots in one image
-par(mfrow=c(2,2))
-
-# XY plot with selected columns
-plot(data[, 'Dist'], data[, 'ENOE'])
-lines(data[,'ENOE'],col='red',lty=3)
-
-png(filename="C:/temp/name.png", height = 1600, width = 1600, res=300)
-dev.off()
-
-# XY plot with grouped data
-axis(1, at=1:5, labels=c("a","b","c","d","e"))
-lines(trucks,col='red',lty=3) 
-cars<-c(1,3,6,4,9) 
-trucks <- c(2, 5, 4, 5, 12)
-g_range <- range(0, cars, trucks) 
-plot(cars, col="blue", type='l', ylim=g_range, xaxt='n')
-axis(1, at=1:5, labels=c("a","b","c","d","e"))
-lines(trucks,col='red',lty=3) 
-
-# Quick box plot
-data <- read.table("/tmp/abc.txt", header=F)
-hist(data$V1)
-axis(1, seq(0, 600, by=100))
-R
-# Filled Density Plot
-d <- density(mtcars$mpg)
-plot(d, main="Kernel Density of Miles Per Gallon")
-polygon(d, col="red", border="blue")
-
-Tips: 
-“The actual values of variables are used only when the plots are actually printed. So, separate variables must be used for separate plots within same image!”
 
 for(i in 1:10) {
 	print(usq[i])
@@ -461,10 +337,77 @@ summary(all)
 fileconn = file("results.txt")
 writeLines(summary(all), fileconn)
 close(fileconn)
-----------------------------------------------------------------------------------------------------------------
-ggplot2
-----------------------------------------------------------------------------------------------------------------
-# An example
+```
+
+### Computing correlation in R for two vectors a and b:
+```R
+coeff <- cor(a, b, method="spearman")
+coeff <- cor(a, b, method="pearson")
+```
+### Replacing data values
+```R
+data$V7[data$V7 > 23] <- 200
+```
+### Subsetting data
+```R
+selection1 <- subset(alldata, EVAL == "TMSCORE")
+chr1 <- data[which(data$V1 == 1),]
+alldata <- subset(alldataoriginal, alldataoriginal$RMSD < 20.0)
+```
+### Combine data into a new table
+```R
+stage1 <- data.frame(tmscore = alldata$stage1_TM.score, stage = rep(c("stage1"), each = 150))
+stage2 <- data.frame(tmscore = alldata$stage2_TM.score, stage = rep(c("stage2"), each = 150))
+final  <- rbind(stage1, stage2)
+```
+### Set number of plots in one image, and adjust figure margins
+```
+par(mar=c(2,2,1,0.1))
+```
+
+### XY plot with selected columns
+plot(data[, 'Dist'], data[, 'ENOE'])
+lines(data[,'ENOE'],col='red',lty=3)
+
+### Plot to file
+```R
+png(filename="C:/temp/name.png", height = 1600, width = 1600, res=300)
+dev.off()
+```
+
+### XY plot with grouped data
+```R
+axis(1, at=1:5, labels=c("a","b","c","d","e"))
+lines(trucks,col='red',lty=3) 
+cars<-c(1,3,6,4,9) 
+trucks <- c(2, 5, 4, 5, 12)
+g_range <- range(0, cars, trucks) 
+plot(cars, col="blue", type='l', ylim=g_range, xaxt='n')
+axis(1, at=1:5, labels=c("a","b","c","d","e"))
+lines(trucks,col='red',lty=3) 
+```
+
+### Quick box plot
+```R
+data <- read.table("/tmp/abc.txt", header=F)
+hist(data$V1)
+axis(1, seq(0, 600, by=100))
+```
+
+### Filled Density Plot
+```R
+d <- density(mtcars$mpg)
+plot(d, main="Kernel Density of Miles Per Gallon")
+polygon(d, col="red", border="blue")
+```
+
+### Tip: 
+The actual values of variables are used only when the plots are actually printed. So, separate variables must be used for separate plots within same image!
+
+# ggplot2
+
+### A sample code
+```R
 require("ggplot2")
 require("gridExtra")
 alldata <- read.table(file="correlation.txt", header=T) 
@@ -473,21 +416,25 @@ plot1 <- ggplot(...) + …
 plot2 <- ggplot(...) + ...
 grid.arrange(plot1, plot2, ncol = 2)
 dev.off()
+```
 
-# XY plot with grouped data
+### XY plot with grouped data
+```R
 ggplot(data = selection1, aes(selection1$ID, selection1$Correlation)) +
 geom_point(aes(colour = factor(selection1$Measure))) +
 geom_line(aes(colour = factor(selection1$Measure))) +
 xlab("Selected Top Contacts") +
 ylab("|Pearson correlation| with TM-score") +
-# Replace the X-axis tick labels with these
+```
+### Replace the X-axis tick labels
+```R
 scale_x_discrete(labels = unique(selection1$TopxL)) + 
 theme_bw() +
 theme(legend.position = "top", legend.title=element_blank())
+```
 
-
-	
-# Density plot
+### Density plot
+```R
 pl1 <- ggplot(data, aes(x = data$TM_score, fill = data$method, linetype = data$method, colour = data$method)) +
 geom_density(alpha = 0.2) +
 xlab("TM-score") + ylab("Density of best models") +
@@ -497,25 +444,24 @@ scale_fill_discrete( breaks=c("sheet", "cns_only", "modeller", "tinker"), labels
 theme_bw() +
 theme(legend.position = "top", legend.title=element_blank())
 print(pl1)
+```
 
-# Bar diagrams
+### Bar diagrams
+```
 ggplot(alldata, aes(x = alldata$xL, y = alldata$contact_count, fill = alldata$stage)) +
 	geom_bar(stat="identity", position=position_dodge(), colour = "black") +
 	xlab("number of contacts (top-xL)") + ylab("number of best models (out of 150)") +
 	theme_bw() +
 	scale_x_continuous(breaks=c(0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0, 2.2)) +
 	theme(legend.position = "top", legend.title=element_blank())
+```
 
-
-# Box Plot
+### Box Plot
+```R
 pl1 <-	ggplot(feature.scores, aes(y = feature.scores$PrecisionL5, x = feature.scores$FeatureLabel, fill = feature.scores$FeatureLabel)) +
   geom_boxplot(aes(group = cut_width(feature.scores$FeatureLabel, 1)), alpha = 0.2, color = "darkgreen", outlier.size = 0) +
   xlab("Separation between two points") + ylab("Distance") +
   theme_bw() +
   theme(legend.position = "none", legend.title=element_blank()) +
   labs(title = "Chromosome3D")
-
-
-
-
-
+```
