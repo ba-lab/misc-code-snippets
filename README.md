@@ -3,7 +3,7 @@
 ## Python
 
 ### A sample code
-```
+```python
 #!/usr/bin/python
 import sys
 import os
@@ -141,48 +141,57 @@ set expandtab
 Update Bash prompt [update ~/.bashrc and ~/.bash_profile]
 export PS1='$(whoami)@$(hostname):$(pwd)'
 export HISTSIZE=100000
-
+```
 Check disk usage summary for each folder sorted by size
+```bash
 du -hs /home/bap54/* | sort -h
-
+```
 Recursive Grep
+```bash
 grep -r sspro4 /home/projects/
-
+```
 Find and delete
+```bash
 find ./project69/ -name dg_sa.log -exec rm -f {} \;
-
-For loop syntax
-for i in {1..23}; do nohup ./build_models_HD.pl test $i & done
-export p=4; for i in {0..5}; do echo p$p$i; sort -k3 p$p$i/results.txt | tail -5 | head -4 ; done
-
+```
 Check Memory (RAM)
+```bash
 free -g
-
+```
 Tar and then Gzip
+```bash
 tar zcvf abc.tar.gz ./abc
-
+```
 Untar and then Gunzip
+```bash
 tar zxvf abc.tar.gz
-
-Zip 
+```
+Zip
+```bash
 zip -r abc.zip ./abc
-
+```
 CPU architecture and Number of CPU
+```bash
 lscpu
-
+```
 Bulk Rename
+```bash
 rename ‘Tp’ ‘Ts’ Tp*
-
+```
 Column Count
+```bash
 head -1 win-7_train.feat.txt | tr '\t' '\n' | wc -l
-
+```
 Keep Column 1 to 596
+```bash
 cut -d' ' -f1-596 win-7_valid.feat.txt
-
+```
 DOS2UNIX Command alternative
+```bash
 sed -i 's/\r//' filename to convert dos2unix line endings
-
+```
 Fix the log file with backspace and other characters:
+```bash
 col -bp < train-2017-02-26.log > xx.log
 ```
 
