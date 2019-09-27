@@ -1,6 +1,6 @@
 # Code Snippets
 
-## Python
+# Python
 
 ### A sample code
 ```python
@@ -98,7 +98,7 @@ brew install sshfs
 sshfs badri@prayog02.umsl.edu:/data/PCP/ /Users/badriadhikari/prayog02.umsl.edu -ovolname=prayog02
 ```
 
-## Linux
+# Linux
 ### How to connect to the prayog02 server?
 1. Connect to UMSL VPN 
 1. `ssh: user@prayog02.umsl.edu`
