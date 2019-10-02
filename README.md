@@ -58,13 +58,16 @@ Open the URL path in your local browser.
 #### Install Tensorboard:
 ```bash
 pip3 list
-pop3 uninstall tensorboard
-pip3 install tf-nightly-2.0-preview
+pip3 uninstall tensorboard
+pip3 uninstall tensorflow
+pip3 uninstall tensorflow-gpu
+pip3 install tf-nightly-gpu-2.0-preview
 ```
 #### In 1st Terminal start tensorboard service:
 ```bash
 ssh user@prayog02.umsl.edu
 cd project-directory (this is where your logs will be written)
+rm -r tb-logs
 tensorboard --logdir ./tb-logs/
 ```
 This will give a URL path (along with a port number, say 6007); leave the terminal open.
@@ -76,6 +79,41 @@ $ ssh -L 6007:127.0.0.1:6007 -N -f -l user prayog02.umsl.edu
 ```
 Open the URL path in your local browser `http://localhost:6007/`
 
+#### Test with the following Python code:
+```python
+import tensorflow as tf
+import datetime
+
+# Clear any logs from previous runs
+!rm -rf ./tb-logs/ 
+
+mnist = tf.keras.datasets.mnist
+
+(x_train, y_train),(x_test, y_test) = mnist.load_data()
+x_train, x_test = x_train / 255.0, x_test / 255.0
+
+def create_model():
+  return tf.keras.models.Sequential([
+    tf.keras.layers.Flatten(input_shape=(28, 28)),
+    tf.keras.layers.Dense(512, activation='relu'),
+    tf.keras.layers.Dropout(0.2),
+    tf.keras.layers.Dense(10, activation='softmax')
+  ])
+
+model = create_model()
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+
+log_dir="./tb-logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
+
+model.fit(x=x_train, 
+          y=y_train, 
+          epochs=3, 
+          validation_data=(x_test, y_test), 
+          callbacks=[tensorboard_callback])
+```
 
 ### How to allow GPU memory growth?
 Add the following code at the beginning of your Python script or Notebook:  
