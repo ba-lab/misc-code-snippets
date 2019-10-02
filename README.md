@@ -26,6 +26,8 @@ for i in range(0,len(lines)):
 	if (wt == 0):
 		print(wt)
 ```
+
+---
 ### Some hammers and screwdrivers
 ```
 print(x.shape)
@@ -35,6 +37,7 @@ print(x.dtypes)
 print(type(x))
 ```
 
+---
 ### How to remotely access the Jupyter Notebook in prayog02?
 #### In 1st Terminal start Jupyter service:
 ```bash
@@ -53,7 +56,7 @@ $ ssh -L 8892:127.0.0.1:8892 -N -f -l user prayog02.umsl.edu
 ```
 Open the URL path in your local browser.
 
-
+---
 ### How to remotely access the Tensorboard in prayog02?
 #### Install Tensorboard:
 ```bash
