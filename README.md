@@ -65,7 +65,7 @@ pip3 install tf-nightly-2.0-preview
 ```bash
 ssh user@prayog02.umsl.edu
 cd project-directory (this is where your logs will be written)
-tensorboard --logdir logs/fit
+tensorboard --logdir ./tb-logs/
 ```
 This will give a URL path (along with a port number, say 6007); leave the terminal open.
 
