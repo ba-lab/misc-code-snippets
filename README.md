@@ -118,6 +118,7 @@ model.fit(x=x_train,
           callbacks=[tensorboard_callback])
 ```
 
+---
 ### How to allow GPU memory growth?
 Add the following code at the beginning of your Python script or Notebook:  
 ```python
@@ -126,6 +127,8 @@ gpu_options = tf.GPUOptions(allow_growth=True)
 sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
 K.tensorflow_backend.set_session(sess)
 ```  
+
+---
 ### How to increase the display decimals (precision) of metrics in Keras?
 * Change “1e-4” to “1e-9” in generic_utils.py (at two places) to increase the output precision
 * Not sure if this impacts only the display but also the actual accuracy calculations.
@@ -133,9 +136,12 @@ K.tensorflow_backend.set_session(sess)
 vim /home/notebook/anaconda3/lib/python3.6/site-packages/keras/utils/generic_utils.py
 EDIT: info += ' %.4f' % avg
 ```
+
+---
 ### How to test GPU speed?
 * Run [this code](https://github.com/fchollet/deep-learning-with-python-notebooks/blob/master/5.1-introduction-to-convnets.ipynb)
 
+---
 ### How to change plotsize in matplotlib?
 ```python
 import matplotlib.pyplot as plt
@@ -143,6 +149,8 @@ plt.rcParams["figure.figsize"] = ((16,16))
 plt.matshow(y, cmap='gray')
 plt.show()
 ```
+
+---
 ### How to confirm the dimensions of tensors?
 ```python
 def abc(x, y):
@@ -150,12 +158,14 @@ def abc(x, y):
    assert x.shape == y.shape
 ```
 
+---
 ### How to find out which device GPU device tensorflow is using?
 ```python
 from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
 ```
 
+---
 ### How to make remote folders accessible locally in Mac?
 ```bash
 brew cask install osxfuse
@@ -180,12 +190,15 @@ pip3 install keras
 pip install tensorflow-gpu==1.13.2 [If this does not work try - pip3 install tensorflow-gpu==1.13.2]
 pip install keras
 ```
+
+---
 ### How to backup (and push to background)?
 * Open ssh terminal to remote server
 * Begin scp transfer as usual.
 * Background the scp process using `Ctrl+Z`, then the command `bg`
 * Disown the backgrounded process using `disown`
 
+---
 ### How to setup VNC viewer using Mac/Ubuntu to access?
 #### Start VNC server in the server with your account
 Run the following commands or create a script with the following content:
@@ -209,6 +222,7 @@ open vnc://localhost:5901 (for mac client)
 $ vncviewer localhost:5901 (for Ubuntu client)
 ```
 
+---
 ### How to create a user in Ubuntu?
 ```bash
 sudo useradd -m -d /home/badri badri
@@ -216,6 +230,7 @@ sudo passwd badri
 sudo usermod -s /bin/bash $USERNAME
 ```
 
+---
 ### How to make vim interface more informative?
 Change default VIM settings:
 ```bash
@@ -230,6 +245,7 @@ set expandtab
 :set number
 ```
 
+---
 ### How to add a new HDD/SDD?
 ```bash
 df -h
@@ -245,6 +261,7 @@ sudo vim /etc/fstab
 /dev/sdb1    /home/yourname/mydata    ext4    defaults    0    1
 ```
 
+---
 ### Some frequently used linux commands
 ```bash
 Update Bash prompt [update ~/.bashrc and ~/.bash_profile]
@@ -310,6 +327,7 @@ col -bp < train-2017-02-26.log > xx.log
 * [Slurm tutorial](https://wiki.rc.hms.harvard.edu/display/O2/Using+Slurm+Basic)
 * [Basic linux commands](http://docs.rnet.missouri.edu/Linux/basic-commands)
 
+---
 ### What are the directories that I have access to (and their space limits)?
 `~, ~/data, ~/scratch, /group/prayog/, /storage/htc/prayog/`
 
@@ -324,6 +342,7 @@ col -bp < train-2017-02-26.log > xx.log
 lfs quota -hg prayog-group /storage/hpc
 ```
 
+---
 ### How to obtain a GPU terminal?
 #### Option 1 (quick):
 ```
@@ -365,6 +384,7 @@ python /group/prayog/ba-lab/test-gpu.py
 ```
 You should see GPU (not CPU) in the logs
    
+---
 ### What are the GPUs available?
 ```
 05 GB - lewis4-r730-gpu3-node426,gpu:Tesla K20Xm:1  
@@ -385,6 +405,8 @@ You should see GPU (not CPU) in the logs
 11 GB - lewis4-z10pg-gpu3-node601,gpu:GeForce GTX 1080 Ti:4
 12 GB - lewis4-z10pg-gpu3-node600,gpu:GeForce GTX 1080 Ti:4
 ```
+
+---
 ### How to run a non-GPU job in background?
 #### Option 1:
 ```
@@ -395,6 +417,8 @@ If it does not run after 5 minutes, you probably don't have two-day access!
 ```
 sbatch /group/prayog/ba-lab/sbatch-Lewis.sh "python /group/prayog/ba-lab/test-gpu.py"
 ```
+
+---
 ### How to check my jobs?
 ```
 sacct
@@ -406,11 +430,13 @@ squeue -A adhikarib
 squeue | grep 'GPU|gpu'
 ```
 
+---
 ### How to know who is in my group?
 ```
 getent group prayog-group
 ```
 
+---
 ### How to lookup detailed partition information (number of nodes, etc.)
 ```
 sinfo --long --partition=Lewis
@@ -418,6 +444,7 @@ sinfo --long --partition=Gpu
 sinfo --long --partition=gpu3
 ```
 
+---
 ### How to create a 'daddy' sbatch job?
 ```bash
 #!/bin/bash
