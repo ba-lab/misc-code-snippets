@@ -53,6 +53,30 @@ $ ssh -L 8892:127.0.0.1:8892 -N -f -l user prayog02.umsl.edu
 ```
 Open the URL path in your local browser.
 
+
+### How to remotely access the Tensorboard in prayog02?
+#### Install Tensorboard:
+```bash
+pip3 list
+pop3 uninstall tensorboard
+pip3 install tf-nightly-2.0-preview
+```
+#### In 1st Terminal start tensorboard service:
+```bash
+ssh user@prayog02.umsl.edu
+cd project-directory (this is where your logs will be written)
+tensorboard --logdir logs/fit
+```
+This will give a URL path (along with a port number, say 6007); leave the terminal open.
+
+#### In 2nd terminal Port forward (this is a local terminal; not server terminal)
+* If you are using Windows follow [this](https://crl.ucsd.edu/handbook/vnc/index.php) instead
+```
+$ ssh -L 6007:127.0.0.1:6007 -N -f -l user prayog02.umsl.edu
+```
+Open the URL path in your local browser `http://localhost:6007/`
+
+
 ### How to allow GPU memory growth?
 Add the following code at the beginning of your Python script or Notebook:  
 ```python
