@@ -28,7 +28,8 @@ for i in range(0,len(lines)):
 ```
 
 ---
-### Some hammers and screwdrivers
+### Some hammers and screwdrivers 
+![](tools.png)
 
 ```
 print(x.shape)
