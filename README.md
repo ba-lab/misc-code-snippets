@@ -28,8 +28,7 @@ for i in range(0,len(lines)):
 ```
 
 ---
-### Some hammers and screwdrivers 
-![](tools.png)
+### Some hammers and screwdrivers <img src="tools.png" alt="drawing" width="20"/>
 
 ```
 print(x.shape)
