@@ -29,6 +29,7 @@ for i in range(0,len(lines)):
 
 ---
 ### Some hammers and screwdrivers
+
 ```
 print(x.shape)
 
