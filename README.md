@@ -35,6 +35,7 @@ print(len(x))
 print(x.ndim)
 print(x.dtypes)
 print(type(x))
+np.set_printoptions(precision = 2)
 ```
 
 ---
