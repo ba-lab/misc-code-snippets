@@ -31,10 +31,15 @@ for i in range(0,len(lines)):
 ### Some hammers and screwdrivers
 ```
 print(x.shape)
+
 print(len(x))
+
 print(x.ndim)
+
 print(x.dtypes)
+
 print(type(x))
+
 np.set_printoptions(precision = 2)
 ```
 
