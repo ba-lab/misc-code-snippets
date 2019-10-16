@@ -195,7 +195,7 @@ sshfs badri@prayog02.umsl.edu:/data/PCP/ /Users/badriadhikari/prayog02.umsl.edu 
 ```
 
 # Linux
-### How to connect to the prayog02 server?
+### How to connect to the prayog servers?
 1. Connect to UMSL VPN 
 1. `ssh: user@prayog02.umsl.edu`
 1. Setup your environment (after first login):
@@ -208,7 +208,7 @@ sshfs badri@prayog02.umsl.edu:/data/PCP/ /Users/badriadhikari/prayog02.umsl.edu 
 ```bash
 pip3 install tensorflow-gpu [If this does not work try - pip3 install tensorflow-gpu==1.13.2]
 pip3 install keras
-pip install tensorflow-gpu==1.13.2 [If this does not work try - pip3 install tensorflow-gpu==1.13.2]
+pip install tensorflow-gpu [If this does not work try - pip3 install tensorflow-gpu==1.13.2]
 pip install keras
 ```
 
