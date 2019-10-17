@@ -128,14 +128,20 @@ model.fit(x=x_train,
 ---
 ### How to allow GPU memory growth?
 Add the following code at the beginning of your Python script or Notebook:  
-#### For Tensorflow1.0
+Option 1:
+```python
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+session = tf.Session(config=config)
+```
+Option 2:
 ```python
 import keras.backend as K
 gpu_options = tf.GPUOptions(allow_growth=True)
 sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
 K.tensorflow_backend.set_session(sess)
 ```  
-#### Tensorflow2.0
+Option 3:
 ```python
 gpus = tf.config.experimental.list_physical_devices('GPU')
 if gpus:
@@ -149,6 +155,8 @@ if gpus:
         # Memory growth must be set before GPUs have been initialized
         print(e)
 ```
+Sometimes, none of them work! :(
+
 ---
 ### How to increase the display decimals (precision) of metrics in Keras?
 * Change “1e-4” to “1e-9” in generic_utils.py (at two places) to increase the output precision
