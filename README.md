@@ -127,7 +127,8 @@ model.fit(x=x_train,
 
 ---
 ### How to allow GPU memory growth?
-Add the following code at the beginning of your Python script or Notebook:  
+Add the following code at the beginning of your Python script or Notebook:   
+
 Option 1:
 ```python
 config = tf.ConfigProto()
