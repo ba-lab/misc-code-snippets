@@ -30,7 +30,7 @@ for i in range(0,len(lines)):
 ---
 ### Some hammers and screwdrivers <img src="tools.png" alt="drawing" width="40"/>
 
-```
+```python
 print(x.shape)
 
 print(len(x))
