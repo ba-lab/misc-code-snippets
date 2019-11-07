@@ -41,7 +41,8 @@ print(x.dtypes)
 
 print(type(x))
 
-np.set_printoptions(precision = 2)
+np.set_printoptions(precision = 2) [does not work for too wide array]
+np.set_printoptions(formatter={'float': '{: 0.1f}'.format})
 ```
 
 ---
