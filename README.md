@@ -159,6 +159,11 @@ if gpus:
 Sometimes, none of them work! :(
 
 ---
+How to rsync?
+```bash
+rsync -av --progress source/ destination/ --exclude dir2
+```
+---
 ### How to increase the display decimals (precision) of metrics in Keras?
 * Change “1e-4” to “1e-9” in generic_utils.py (at two places) to increase the output precision
 * Not sure if this impacts only the display but also the actual accuracy calculations.
