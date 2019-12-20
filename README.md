@@ -381,8 +381,8 @@ lfs quota -hg prayog-group /storage/hpc
 ### How to obtain a GPU terminal?
 #### Option 1 (quick):
 ```
-source /home/adhikarib/group-prayog/ba-lab/give-me-a-gpu-node.sh
-source /home/adhikarib/group-prayog/ba-lab/keras.sh
+source /group/prayog/ba-lab/ba-lab/give-me-a-gpu-node.sh
+source /group/prayog/ba-lab/keras.sh
 ```
 
 #### Option 2 (detailed):
