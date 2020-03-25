@@ -367,10 +367,11 @@ col -bp < train-2017-02-26.log > xx.log
 `~, ~/data, ~/scratch, /group/prayog/, /storage/htc/prayog/`
 
 ```
-~/ 5GB
-~/data 100GB
-~/scratch Unlimited
-/group/prayog/ 100GB
+~/ - 5GB
+~/data/ - 100GB
+/group/prayog/ - 100GB or 250GB
+/storage/htc/prayog - 10TB
+~/scratch/ - Unlimited
 ```
 
 ```
