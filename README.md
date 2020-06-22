@@ -130,6 +130,20 @@ model.fit(x=x_train,
 ### How to allow GPU memory growth?
 Add the following code at the beginning of your Python script or Notebook:   
 
+Option 0:
+```python
+# Allow GPU memory growth
+if hasattr(tf, 'GPUOptions'):
+	import keras.backend as K
+	gpu_options = tf.GPUOptions(allow_growth=True)
+	sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
+	K.tensorflow_backend.set_session(sess)
+else:
+	# For other GPUs
+	for gpu in tf.config.experimental.list_physical_devices('GPU'):
+	tf.config.experimental.set_memory_growth(gpu, True)
+```
+ 
 Options 1 & 2:
 ```python
 # Some GPUs don't allow memory growth by default (keep both options)
