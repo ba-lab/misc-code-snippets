@@ -42,3 +42,21 @@ print(type(x))
 np.set_printoptions(precision = 2) # does not work for too wide array
 np.set_printoptions(formatter = {'float': '{: 0.1f}'.format})
 ```
+
+---
+### How to change plotsize in matplotlib?
+```python
+import matplotlib.pyplot as plt
+plt.rcParams["figure.figsize"] = ((16,16))
+plt.matshow(y, cmap='gray')
+plt.show()
+```
+
+---
+### How to confirm the dimensions of tensors?
+```python
+def abc(x, y):
+   assert len(x.shape) == 2
+   assert x.shape == y.shape
+```
+
