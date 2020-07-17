@@ -1,6 +1,44 @@
 <h1>GPU Code Snippets</h1>
 
 ---
+### How to increase my `history` size?
+Add the following code to `~/.bashrc`
+```bash
+HISTSIZE=10000
+HISTFILESIZE=20000
+```
+
+---
+### How to allow GPU memory growth?
+Add the following code at the beginning of your Python script or Notebook:   
+
+Option 0:
+```python
+config = tf.ConfigProto()
+config.gpu_options.allow_growth=True
+sess = tf.Session(config=config)
+```
+
+Option 1:
+```python
+import keras.backend as K
+gpu_options = tf.GPUOptions(allow_growth=True)
+sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
+K.tensorflow_backend.set_session(sess)
+```
+
+Option 2:
+```
+for gpu in tf.config.experimental.list_physical_devices('GPU'):
+	tf.config.experimental.set_memory_growth(gpu, True)
+```
+---
+### How to use a specific GPU (in prayog10 server)?
+```python
+CUDA_VISIBLE_DEVICES=0 python3 train.py
+```
+
+---
 ### How to remotely access the Jupyter Notebook in prayog02?
 #### In 1st Terminal start Jupyter service:
 ```bash
@@ -82,52 +120,7 @@ model.fit(x=x_train,
 ```
 
 ---
-### How to allow GPU memory growth?
-Add the following code at the beginning of your Python script or Notebook:   
 
-Option 0:
-```python
-# Allow GPU memory growth
-if hasattr(tf, 'GPUOptions'):
-	import keras.backend as K
-	gpu_options = tf.GPUOptions(allow_growth=True)
-	sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
-	K.tensorflow_backend.set_session(sess)
-else:
-	# For other GPUs
-	for gpu in tf.config.experimental.list_physical_devices('GPU'):
-		tf.config.experimental.set_memory_growth(gpu, True)
-```
- 
-Options 1 & 2:
-```python
-# Some GPUs don't allow memory growth by default (keep both options)
-# Option 1
-for gpu in tf.config.experimental.list_physical_devices('GPU'):
-    tf.config.experimental.set_memory_growth(gpu, True)
-# Option 2
-import keras.backend as K
-gpu_options = tf.GPUOptions(allow_growth=True)
-sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
-K.tensorflow_backend.set_session(sess)
-```  
-Option 3:
-```python
-gpus = tf.config.experimental.list_physical_devices('GPU')
-if gpus:
-    try:
-        # Currently, memory growth needs to be the same across GPUs
-        for gpu in gpus:
-            tf.config.experimental.set_memory_growth(gpu, True)
-        logical_gpus = tf.config.experimental.list_logical_devices('GPU')
-        print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPUs")
-    except RuntimeError as e:
-        # Memory growth must be set before GPUs have been initialized
-        print(e)
-```
-Sometimes, none of them work! :(
-
----
 How to rsync?
 ```bash
 rsync -av --progress source/ destination/ --exclude dir2
