@@ -13,10 +13,10 @@ HISTFILESIZE=20000
 Add the following code at the beginning of your Python script or Notebook:   
 
 Option 0:
-```python
-config = tf.ConfigProto()
-config.gpu_options.allow_growth=True
-sess = tf.Session(config=config)
+```
+for gpu in tf.config.experimental.list_physical_devices('GPU'):
+	print('Setting gpu growth for', gpu)
+	tf.config.experimental.set_memory_growth(gpu, True)
 ```
 
 Option 1:
@@ -28,10 +28,12 @@ K.tensorflow_backend.set_session(sess)
 ```
 
 Option 2:
+```python
+config = tf.ConfigProto()
+config.gpu_options.allow_growth=True
+sess = tf.Session(config=config)
 ```
-for gpu in tf.config.experimental.list_physical_devices('GPU'):
-	tf.config.experimental.set_memory_growth(gpu, True)
-```
+
 ---
 ### How to use a specific GPU (in prayog10 server)?
 ```python
