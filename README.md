@@ -1,7 +1,7 @@
 <h1>GPU Code Snippets</h1>
 
 ---
-### How to increase my `history` size?
+### How to increase my 'history' size?
 Add the following code to `~/.bashrc`
 ```bash
 HISTSIZE=10000
