@@ -17,6 +17,14 @@ pip install keras
 ```
 
 ---
+### How to increase my 'history' size?
+Add the following code to `~/.bashrc`
+```bash
+HISTSIZE=10000
+HISTFILESIZE=20000
+```
+
+---
 ### How to backup (and push to background)?
 * Open ssh terminal to remote server
 * Begin scp transfer as usual.
