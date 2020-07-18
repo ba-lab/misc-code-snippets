@@ -1,14 +1,6 @@
 <h1>GPU Code Snippets</h1>
 
 ---
-### How to increase my 'history' size?
-Add the following code to `~/.bashrc`
-```bash
-HISTSIZE=10000
-HISTFILESIZE=20000
-```
-
----
 ### How to allow GPU memory growth?
 Add the following code at the beginning of your Python script or Notebook:   
 
