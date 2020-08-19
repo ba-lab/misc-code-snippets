@@ -38,9 +38,9 @@ CUDA_VISIBLE_DEVICES=0 python3 train.py
 ```bash
 ssh user@prayog02.umsl.edu
 pip install jupyter (if not installed)
-jupyter notebook --no-browser --port=8892
+CUDA_VISIBLE_DEVICES=0 jupyter notebook --no-browser --port=8892
 OR
-/home/user/.local/bin/jupyter-notebook --no-browser --port=8892
+CUDA_VISIBLE_DEVICES=0 /home/user/.local/bin/jupyter-notebook --no-browser --port=8892
 ```
 This will give a URL path; leave the terminal open.
 
