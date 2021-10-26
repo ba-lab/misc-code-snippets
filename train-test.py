@@ -4,7 +4,10 @@ import datetime
 if tf.test.gpu_device_name():
     print('Default GPU Device: {}'.format(tf.test.gpu_device_name()))
 else:
-    print("Please install GPU version of TF")
+    print("Please install GPU version of TF!!")
+
+print('')
+print('')
 
 # Clear any logs from previous runs
 #!rm -rf ./tb-logs/ 
