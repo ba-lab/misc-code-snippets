@@ -1,6 +1,20 @@
 <h1>GPU Code Snippets</h1>
 
 ---
+### How to use a specific GPU (in prayog10 server)?
+
+```python
+# Use 2st GPU
+CUDA_VISIBLE_DEVICES=0 python3 train-test.py
+
+# Use 2nd GPU
+CUDA_VISIBLE_DEVICES=1 python3 train-test.py
+
+# Use CPU
+CUDA_VISIBLE_DEVICES=-1 python3 train-test.py
+```
+
+---
 ### How to allow GPU memory growth?
 Add the following code at the beginning of your Python script or Notebook:   
 
@@ -24,20 +38,6 @@ Option 2:
 config = tf.ConfigProto()
 config.gpu_options.allow_growth=True
 sess = tf.Session(config=config)
-```
-
----
-### How to use a specific GPU (in prayog10 server)?
-```python
-# Use 2st GPU
-CUDA_VISIBLE_DEVICES=0 python3 train-test.py
-
-# Use 2nd GPU
-CUDA_VISIBLE_DEVICES=1 python3 train-test.py
-
-# Use CPU
-CUDA_VISIBLE_DEVICES=-1 python3 train-test.py
-
 ```
 
 ---
