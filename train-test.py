@@ -1,13 +1,26 @@
 import tensorflow as tf
 import datetime
+import time
 
+print('')
+print('')
+print('Checking CPU/GPU...')
 if tf.test.gpu_device_name():
     print('Default GPU Device: {}'.format(tf.test.gpu_device_name()))
 else:
     print("Please install GPU version of TF!!")
 
+time.sleep(1)
+
 print('')
 print('')
+print('Listing devices..')
+from tensorflow.python.client import device_lib
+print(device_lib.list_local_devices())
+print('')
+print('')
+
+time.sleep(1)
 
 # Clear any logs from previous runs
 #!rm -rf ./tb-logs/ 
