@@ -3,8 +3,12 @@
 ---
 ### How to use a specific GPU (in prayog10 server)?
 
+```
+wget https://raw.githubusercontent.com/ba-lab/code-snippets/master/train-test.py
+```
+
 ```python
-# Use 2st GPU
+# Use 1st GPU
 CUDA_VISIBLE_DEVICES=0 python3 train-test.py
 
 # Use 2nd GPU
