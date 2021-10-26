@@ -29,7 +29,15 @@ sess = tf.Session(config=config)
 ---
 ### How to use a specific GPU (in prayog10 server)?
 ```python
-CUDA_VISIBLE_DEVICES=0 python3 train.py
+# Use 2st GPU
+CUDA_VISIBLE_DEVICES=0 python3 train-test.py
+
+# Use 2nd GPU
+CUDA_VISIBLE_DEVICES=1 python3 train-test.py
+
+# Use CPU
+CUDA_VISIBLE_DEVICES=-1 python3 train-test.py
+
 ```
 
 ---
