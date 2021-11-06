@@ -156,5 +156,5 @@ print(device_lib.list_local_devices())
 ```bash
 brew cask install osxfuse
 brew install sshfs
-sshfs badri@prayog02.umsl.edu:/data/PCP/ /Users/badriadhikari/prayog02.umsl.edu -ovolname=prayog02
+sshfs badri@prayog10.umsl.edu:/home/badri/ /Users/badriadhikari/prayog10.umsl.edu -ovolname=prayog10
 ```
