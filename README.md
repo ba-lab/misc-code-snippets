@@ -49,7 +49,7 @@ sess = tf.Session(config=config)
 #### In 1st Terminal start Jupyter service:
 ```bash
 ssh user@prayog02.umsl.edu
-pip install jupyter (if not installed)
+pip3 install jupyter (if not installed)
 CUDA_VISIBLE_DEVICES=0 jupyter notebook --no-browser --port=8892
 OR
 CUDA_VISIBLE_DEVICES=0 /home/user/.local/bin/jupyter-notebook --no-browser --port=8892
